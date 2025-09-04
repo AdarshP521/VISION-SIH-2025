@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Attendance Display</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-camera"></i>
+                    <div class="title-status-wrapper">
+                        <h1>Vision Attendance System</h1>
+                        <div class="system-status">
+                            <span class="status-indicator" id="systemStatus">
+                                <i class="fas fa-circle"></i> System Active
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="class-info">
+                    <h2 id="className">Computer Science - Class 12 C</h2>
+                    <div class="datetime-info">
+                        <div class="time-date-wrapper">
+                            <p id="currentDate"></p>
+                            <p id="currentTime"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="attendance-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalStudents">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item present">
+                        <span class="stat-number" id="presentStudents">0</span>
+                        <span class="stat-label">Present</span>
+                    </div>
+                    <div class="stat-item absent">
+                        <span class="stat-number" id="absentStudents">0</span>
+                        <span class="stat-label">Absent</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content - Dynamic Layout -->
+        <main class="main-content" id="mainContent">
+            <!-- Regular Class Mode -->
+            <div class="regular-mode" id="regularMode">
+                <!-- Present Students Section -->
+                <section class="students-section present-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-user-check"></i> Present Students</h3>
+                        <span class="count-badge" id="presentCount">0</span>
+                    </div>
+                    <div class="students-grid compact" id="presentStudentsGrid">
+                        <!-- Present students will be displayed here -->
+                    </div>
+                </section>
+
+                <!-- Absent Students Section -->
+                <section class="students-section absent-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-user-times"></i> Absent Students</h3>
+                        <span class="count-badge" id="absentCount">0</span>
+                    </div>
+                    <div class="students-grid compact" id="absentStudentsGrid">
+                        <!-- Absent students will be displayed here -->
+                    </div>
+                </section>
+
+                <!-- Today's Timetable Section -->
+                <section class="timetable-section" id="timetableSection">
+                    <div class="section-header">
+                        <h3><i class="fas fa-calendar-alt"></i> Today's Timetable</h3>
+                        <span class="current-period" id="currentPeriod">--</span>
+                    </div>
+                    <div class="timetable-grid" id="timetableGrid">
+                        <!-- Timetable will be displayed here -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Free Period Mode -->
+            <div class="free-period-mode" id="freePeriodMode" style="display: none;">
+                <!-- Creative Task Section -->
+                <section class="task-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-palette"></i> Creative Task</h3>
+                        <span class="task-timer" id="taskTimer">--:--</span>
+                    </div>
+                    <div class="task-content" id="taskContent">
+                        <!-- Task details will be displayed here -->
+                    </div>
+                </section>
+
+                <!-- Student Leaderboard Section -->
+                <section class="leaderboard-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-trophy"></i> Student Leaderboard</h3>
+                        <span class="leaderboard-update" id="leaderboardUpdate">Live</span>
+                    </div>
+                    <div class="leaderboard-grid" id="leaderboardGrid">
+                        <!-- Leaderboard will be displayed here -->
+                    </div>
+                </section>
+
+                <!-- Task Progress Section -->
+                <section class="progress-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-chart-line"></i> Task Progress</h3>
+                        <span class="progress-count" id="progressCount">0/0</span>
+                    </div>
+                    <div class="progress-content" id="progressContent">
+                        <!-- Progress tracking will be displayed here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Hardware Status Bar -->
+        <div class="hardware-status-bar" id="hardwareStatus">
+            <div class="status-item">
+                <i class="fas fa-camera"></i>
+                <span>Camera: <span class="status-text">Connected</span></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-database"></i>
+                <span>Database: <span class="status-text">Online</span></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-network-wired"></i>
+                <span>Network: <span class="status-text">Active</span></span>
+            </div>
+            <div class="status-item">
+                <i class="fas fa-clock"></i>
+                <span>Last Update: <span id="lastUpdateTime">--:--</span></span>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="fab admin-fab" onclick="showAdminPanel()" title="Admin Panel (Ctrl+K)">
+            <i class="fas fa-cog"></i>
+        </button>
+        
+        <!-- Test Mode Button (for development) -->
+        <button class="fab test-mode-fab" onclick="toggleTestMode()" title="Test Mode Switch">
+            <i class="fas fa-exchange-alt"></i>
+        </button>
+
+        <!-- Admin Panel (Hidden by default) -->
+        <div class="admin-panel" id="adminPanel" style="display: none;">
+            <div class="admin-header">
+                <h3>Admin Controls</h3>
+                <button class="close-btn" onclick="toggleAdminPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-controls">
+                <button class="btn btn-primary" onclick="refreshData()">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+                <button class="btn btn-success" onclick="exportAttendance()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button class="btn btn-info" onclick="testConnection()">
+                    <i class="fas fa-wifi"></i> Test
+                </button>
+                <button class="btn btn-secondary" onclick="resetSystem()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
