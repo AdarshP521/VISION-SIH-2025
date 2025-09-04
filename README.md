@@ -142,3 +142,5 @@ For any queries regarding the project, please contact:
 
 ---
 ⭐ Star this repo if you find it helpful!
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d911fd5c-f39d-4ffa-891e-345c5320e9ae/deploy-status)](https://app.netlify.com/projects/visionas/deploys)
