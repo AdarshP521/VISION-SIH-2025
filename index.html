@@ -112,14 +112,66 @@
                     </div>
                 </section>
 
-                <!-- Task Progress Section -->
+                <!-- Daily Tasks Section -->
                 <section class="progress-section">
                     <div class="section-header">
-                        <h3><i class="fas fa-chart-line"></i> Task Progress</h3>
-                        <span class="progress-count" id="progressCount">0/0</span>
+                        <h3><i class="fas fa-tasks"></i> Daily Brain Tasks</h3>
+                        <span class="task-refresh" id="taskRefreshTime">Updates at 12 AM</span>
                     </div>
-                    <div class="progress-content" id="progressContent">
-                        <!-- Progress tracking will be displayed here -->
+                    <div class="daily-tasks-content" id="dailyTasksContent">
+                        <!-- Daily tasks will be displayed here -->
+                        <div class="task-card" id="oddOneOut">
+                            <div class="task-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div class="task-details">
+                                <h4>Odd One Out</h4>
+                                <p class="task-description">Find the word that doesn't belong in the group</p>
+                                <div class="task-status">
+                                    <span class="status-badge">Not Started</span>
+                                    <button class="start-task-btn" onclick="startTask('oddOneOut')">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card" id="jumbleWords">
+                            <div class="task-icon">
+                                <i class="fas fa-random"></i>
+                            </div>
+                            <div class="task-details">
+                                <h4>Jumble Words Solver</h4>
+                                <p class="task-description">Rearrange letters to find hidden words</p>
+                                <div class="task-status">
+                                    <span class="status-badge">Not Started</span>
+                                    <button class="start-task-btn" onclick="startTask('jumbleWords')">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card" id="sudoku">
+                            <div class="task-icon">
+                                <i class="fas fa-th"></i>
+                            </div>
+                            <div class="task-details">
+                                <h4>Sudoku Challenge</h4>
+                                <p class="task-description">Solve the daily Sudoku puzzle</p>
+                                <div class="task-status">
+                                    <span class="status-badge">Not Started</span>
+                                    <button class="start-task-btn" onclick="startTask('sudoku')">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-card" id="pictureWord">
+                            <div class="task-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="task-details">
+                                <h4>Picture Word Guess</h4>
+                                <p class="task-description">Guess the word from the image</p>
+                                <div class="task-status">
+                                    <span class="status-badge">Not Started</span>
+                                    <button class="start-task-btn" onclick="startTask('pictureWord')">Start</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>

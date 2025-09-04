@@ -15,9 +15,10 @@ body {
 
 .container {
     height: 100vh;
-    padding: 15px;
+    padding: 15px 15px 100px 15px; /* Added bottom padding for hardware bar */
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 /* Header Styles - Compact for TV */
@@ -188,10 +189,10 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     width: 100%;
-    height: calc(100vh - 260px);
+    height: calc(100vh - 320px); /* Increased space for hardware section */
     align-items: start;
-    margin-bottom: 30px;
-    padding-bottom: 10px;
+    margin-bottom: 80px; /* Increased margin to prevent overlap */
+    padding-bottom: 20px;
 }
 
 .students-section, .timetable-section, .task-section, .leaderboard-section, .progress-section {
@@ -206,7 +207,7 @@ body {
     height: 100%;
     justify-content: flex-start;
     align-items: stretch;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
 }
 
 .section-header {
@@ -351,7 +352,7 @@ body {
     width: 100%;
     overflow-y: auto;
     height: calc(100% - 50px);
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .task-title {
@@ -528,15 +529,132 @@ body {
 }
 
 /* Progress Section Styles */
-.progress-content {
+.daily-tasks-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     padding: 15px;
     width: 100%;
     height: calc(100% - 50px);
     overflow-y: auto;
     margin-bottom: 10px;
+}
+
+.task-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.task-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-details h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.task-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 10px 0;
+}
+
+.task-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.status-badge {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    color: #666;
+}
+
+.status-badge.completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.in-progress {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.start-task-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.start-task-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.start-task-btn:disabled {
+    background: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.task-refresh {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    animation: taskRefreshPulse 2s infinite;
+}
+
+@keyframes taskRefreshPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
 }
 
 .progress-bar-container {
@@ -900,16 +1018,20 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 10px;
-    margin: 15px 100px 1px 100px;
+    margin: 0px 100px 20px 100px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
     width: calc(100% - 200px);
-    position: relative;
+    position: fixed;
+    bottom: -7px;
+    left: 0;
+    right: 0;
     z-index: 900;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .status-item {
@@ -1061,7 +1183,7 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     z-index: 1000;
-    bottom: 20px;
+    bottom: 85px; /* Adjusted to be above hardware status bar */
 }
 
 .fab:hover {

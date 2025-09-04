@@ -141,25 +141,25 @@ const creativeTasks = [
 // Student data with face recognition IDs and performance scores
 const students = [
     { id: 1, name: "Sana", rollNo: "CS001", present: false, checkInTime: null, faceId: "face_001", performanceScore: 85, tasksCompleted: 12, creativePoints: 450 },
-    { id: 2, name: "Raftarr", rollNo: "CS002", present: false, checkInTime: null, faceId: "face_002", performanceScore: 92, tasksCompleted: 15, creativePoints: 520 },
-    { id: 3, name: "Guru", rollNo: "CS003", present: false, checkInTime: null, faceId: "face_003", performanceScore: 78, tasksCompleted: 10, creativePoints: 380 },
+    { id: 2, name: "Rohit", rollNo: "CS002", present: false, checkInTime: null, faceId: "face_002", performanceScore: 92, tasksCompleted: 15, creativePoints: 520 },
+    { id: 3, name: "Gaurav", rollNo: "CS003", present: false, checkInTime: null, faceId: "face_003", performanceScore: 78, tasksCompleted: 10, creativePoints: 380 },
     { id: 4, name: "Nandini", rollNo: "CS004", present: false, checkInTime: null, faceId: "face_004", performanceScore: 95, tasksCompleted: 18, creativePoints: 580 },
     { id: 5, name: "Vipin", rollNo: "CS005", present: false, checkInTime: null, faceId: "face_005", performanceScore: 88, tasksCompleted: 13, creativePoints: 470 },
     { id: 6, name: "Naina", rollNo: "CS006", present: false, checkInTime: null, faceId: "face_006", performanceScore: 91, tasksCompleted: 16, creativePoints: 510 },
     { id: 7, name: "Krish", rollNo: "CS007", present: false, checkInTime: null, faceId: "face_007", performanceScore: 82, tasksCompleted: 11, creativePoints: 420 },
     { id: 8, name: "Luv", rollNo: "CS008", present: false, checkInTime: null, faceId: "face_008", performanceScore: 89, tasksCompleted: 14, creativePoints: 480 },
     { id: 9, name: "Mohit", rollNo: "CS009", present: false, checkInTime: null, faceId: "face_009", performanceScore: 87, tasksCompleted: 12, creativePoints: 460 },
-    { id: 10, name: "Rohit", rollNo: "CS010", present: false, checkInTime: null, faceId: "face_010", performanceScore: 93, tasksCompleted: 17, creativePoints: 540 },
+    { id: 10, name: "Rohan", rollNo: "CS010", present: false, checkInTime: null, faceId: "face_010", performanceScore: 93, tasksCompleted: 17, creativePoints: 540 },
     { id: 11, name: "Vaishnavi", rollNo: "CS011", present: false, checkInTime: null, faceId: "face_011", performanceScore: 86, tasksCompleted: 12, creativePoints: 440 },
     { id: 12, name: "Pandey", rollNo: "CS012", present: false, checkInTime: null, faceId: "face_012", performanceScore: 90, tasksCompleted: 15, creativePoints: 500 },
-    { id: 13, name: "Emiway", rollNo: "CS013", present: false, checkInTime: null, faceId: "face_013", performanceScore: 84, tasksCompleted: 11, creativePoints: 430 },
-    { id: 14, name: "Divine", rollNo: "CS014", present: false, checkInTime: null, faceId: "face_014", performanceScore: 94, tasksCompleted: 16, creativePoints: 550 },
-    { id: 15, name: "Ikka", rollNo: "CS015", present: false, checkInTime: null, faceId: "face_015", performanceScore: 88, tasksCompleted: 13, creativePoints: 470 },
-    { id: 16, name: "Bantai", rollNo: "CS016", present: false, checkInTime: null, faceId: "face_016", performanceScore: 85, tasksCompleted: 10, creativePoints: 400 },
-    { id: 17, name: "Kallu", rollNo: "CS017", present: false, checkInTime: null, faceId: "face_017", performanceScore: 82, tasksCompleted: 12, creativePoints: 440 },
-    { id: 18, name: "Diljit", rollNo: "CS018", present: false, checkInTime: null, faceId: "face_018", performanceScore: 89, tasksCompleted: 14, creativePoints: 480 },
-    { id: 19, name: "Sidhu", rollNo: "CS019", present: false, checkInTime: null, faceId: "face_019", performanceScore: 87, tasksCompleted: 12, creativePoints: 460 },
-    { id: 20, name: "Munni", rollNo: "CS020", present: false, checkInTime: null, faceId: "face_020", performanceScore: 93, tasksCompleted: 17, creativePoints: 540 }   
+    { id: 13, name: "Khushi", rollNo: "CS013", present: false, checkInTime: null, faceId: "face_013", performanceScore: 84, tasksCompleted: 11, creativePoints: 430 },
+    { id: 14, name: "Pallavi", rollNo: "CS014", present: false, checkInTime: null, faceId: "face_014", performanceScore: 94, tasksCompleted: 16, creativePoints: 550 },
+    { id: 15, name: "Ishika", rollNo: "CS015", present: false, checkInTime: null, faceId: "face_015", performanceScore: 88, tasksCompleted: 13, creativePoints: 470 },
+    { id: 16, name: "Zeeshan", rollNo: "CS016", present: false, checkInTime: null, faceId: "face_016", performanceScore: 85, tasksCompleted: 10, creativePoints: 400 },
+    { id: 17, name: "Aryan", rollNo: "CS017", present: false, checkInTime: null, faceId: "face_017", performanceScore: 82, tasksCompleted: 12, creativePoints: 440 },
+    { id: 18, name: "Ayush", rollNo: "CS018", present: false, checkInTime: null, faceId: "face_018", performanceScore: 89, tasksCompleted: 14, creativePoints: 480 },
+    { id: 19, name: "Chirag", rollNo: "CS019", present: false, checkInTime: null, faceId: "face_019", performanceScore: 87, tasksCompleted: 12, creativePoints: 460 },
+    { id: 20, name: "Rishab", rollNo: "CS020", present: false, checkInTime: null, faceId: "face_020", performanceScore: 93, tasksCompleted: 17, creativePoints: 540 }   
 ];
 
 // Class information

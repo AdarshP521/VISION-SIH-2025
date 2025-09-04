@@ -443,49 +443,143 @@ function createLeaderboardItem(student) {
     return item;
 }
 
-// Update progress display
-function updateProgressDisplay() {
-    if (!window.faceRecognitionManager) return;
-    
-    const progressContent = document.getElementById('progressContent');
-    const progressCount = document.getElementById('progressCount');
-    const progressSummary = window.faceRecognitionManager.getTaskProgressSummary();
-    
-    if (!progressContent || !progressSummary) return;
-    
-    // Update progress count
-    if (progressCount) {
-        progressCount.textContent = `${progressSummary.completed}/${progressSummary.total}`;
+// Daily tasks data
+const dailyTasks = {
+    oddOneOut: {
+        questions: [
+            {
+                words: ['Apple', 'Banana', 'Orange', 'Book', 'Mango'],
+                answer: 'Book'
+            },
+            {
+                words: ['Car', 'Bus', 'Train', 'Pizza', 'Plane'],
+                answer: 'Pizza'
+            },
+            // Add more questions
+        ]
+    },
+    jumbleWords: {
+        words: [
+            { jumbled: 'PUTMOCER', answer: 'COMPUTER' },
+            { jumbled: 'NEOHP', answer: 'PHONE' },
+            // Add more words
+        ]
+    },
+    sudoku: {
+        // Daily Sudoku puzzle data
+        grid: [
+            [5,3,0,0,7,0,0,0,0],
+            [6,0,0,1,9,5,0,0,0],
+            [0,9,8,0,0,0,0,6,0],
+            [8,0,0,0,6,0,0,0,3],
+            [4,0,0,8,0,3,0,0,1],
+            [7,0,0,0,2,0,0,0,6],
+            [0,6,0,0,0,0,2,8,0],
+            [0,0,0,4,1,9,0,0,5],
+            [0,0,0,0,8,0,0,7,9]
+        ]
+    },
+    pictureWord: {
+        questions: [
+            {
+                imageUrl: 'path/to/image1.jpg',
+                answer: 'COMPUTER'
+            },
+            {
+                imageUrl: 'path/to/image2.jpg',
+                answer: 'SCHOOL'
+            },
+            // Add more picture-word pairs
+        ]
     }
-    
-    // Calculate progress percentage
-    const progressPercentage = progressSummary.total > 0 ? 
-        Math.round((progressSummary.completed / progressSummary.total) * 100) : 0;
-    
-    progressContent.innerHTML = `
-        <div class="progress-bar-container">
-            <div class="progress-bar" style="width: ${progressPercentage}%"></div>
-        </div>
-        <div class="progress-stats">
-            <div class="progress-stat">
-                <div class="progress-stat-number">${progressSummary.started}</div>
-                <div class="progress-stat-label">Started</div>
-            </div>
-            <div class="progress-stat">
-                <div class="progress-stat-number">${progressSummary.completed}</div>
-                <div class="progress-stat-label">Completed</div>
-            </div>
-            <div class="progress-stat">
-                <div class="progress-stat-number">${progressSummary.totalPoints}</div>
-                <div class="progress-stat-label">Total Points</div>
-            </div>
-            <div class="progress-stat">
-                <div class="progress-stat-number">${progressSummary.averagePoints}</div>
-                <div class="progress-stat-label">Avg Points</div>
-            </div>
-        </div>
-    `;
+};
+
+// Update daily tasks display
+function updateDailyTasksDisplay() {
+    const taskRefreshTime = document.getElementById('taskRefreshTime');
+    if (taskRefreshTime) {
+        const now = new Date();
+        const nextRefresh = new Date(now);
+        nextRefresh.setHours(24, 0, 0, 0);
+        const timeUntilRefresh = nextRefresh - now;
+        const hoursLeft = Math.floor(timeUntilRefresh / (1000 * 60 * 60));
+        const minutesLeft = Math.floor((timeUntilRefresh % (1000 * 60 * 60)) / (1000 * 60));
+        taskRefreshTime.textContent = `Updates in ${hoursLeft}h ${minutesLeft}m`;
+    }
+
+    // Update task status from localStorage
+    const taskStatuses = JSON.parse(localStorage.getItem('dailyTaskStatuses') || '{}');
+    Object.keys(taskStatuses).forEach(taskId => {
+        const taskCard = document.getElementById(taskId);
+        if (taskCard) {
+            const statusBadge = taskCard.querySelector('.status-badge');
+            const startButton = taskCard.querySelector('.start-task-btn');
+            if (statusBadge && startButton) {
+                statusBadge.textContent = taskStatuses[taskId];
+                if (taskStatuses[taskId] === 'Completed') {
+                    statusBadge.classList.add('completed');
+                    startButton.disabled = true;
+                } else if (taskStatuses[taskId] === 'In Progress') {
+                    statusBadge.classList.add('in-progress');
+                }
+            }
+        }
+    });
 }
+
+// Start a daily task
+function startTask(taskId) {
+    const taskStatuses = JSON.parse(localStorage.getItem('dailyTaskStatuses') || '{}');
+    
+    // Update task status
+    taskStatuses[taskId] = 'In Progress';
+    localStorage.setItem('dailyTaskStatuses', JSON.stringify(taskStatuses));
+    
+    // Update display
+    updateDailyTasksDisplay();
+    
+    // Show task modal based on type
+    switch(taskId) {
+        case 'oddOneOut':
+            showOddOneOutTask();
+            break;
+        case 'jumbleWords':
+            showJumbleWordsTask();
+            break;
+        case 'sudoku':
+            showSudokuTask();
+            break;
+        case 'pictureWord':
+            showPictureWordTask();
+            break;
+    }
+}
+
+// Reset daily tasks at midnight
+function checkAndResetDailyTasks() {
+    const lastReset = localStorage.getItem('lastTaskReset');
+    const now = new Date();
+    const today = now.toDateString();
+    
+    if (lastReset !== today) {
+        // Reset all task statuses
+        localStorage.setItem('dailyTaskStatuses', '{}');
+        localStorage.setItem('lastTaskReset', today);
+        updateDailyTasksDisplay();
+    }
+}
+
+// Initialize daily tasks
+document.addEventListener('DOMContentLoaded', function() {
+    updateDailyTasksDisplay();
+    checkAndResetDailyTasks();
+    
+    // Check for reset every minute
+    setInterval(checkAndResetDailyTasks, 60000);
+    
+    // Update countdown every minute
+    setInterval(updateDailyTasksDisplay, 60000);
+});
 
 // Start task timer
 function startTaskTimer() {
