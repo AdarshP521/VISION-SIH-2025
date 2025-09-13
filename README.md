@@ -5,6 +5,20 @@
 ## Overview
 Vision SIH 2025 is a modern, real-time face recognition-based attendance management system designed for educational institutions. It provides an efficient, contactless way to track student attendance with an intuitive TV-optimized display interface.
 
+## 👥 Development Name
+- Vision
+
+## 👥 Development Team
+- Adarsh Pandey
+- Vaishnavi Sahu
+- Vipin Kumar
+- Sana Parveen
+- Mohit
+- Luv Sharma
+
+## 🌟 Acknowledgments
+- Smart India Hackathon 2025
+
 ## 🚀 Features
 
 ### Core Functionality
@@ -123,20 +137,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 License
 This project is licensed under the MIT License.
-
-## 👥 Development Name
-- Vision
-
-## 👥 Development Team
-- Adarsh Pandey
-- Vaishnavi Sahu
-- Vipin Kumar
-- Sana Parveen
-- Mohit
-- Luv Sharma
-
-## 🌟 Acknowledgments
-- Smart India Hackathon 2025
 
 ## 📞 Contact
 For any queries regarding the project, please contact:
